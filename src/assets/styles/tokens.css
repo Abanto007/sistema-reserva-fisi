@@ -1,0 +1,88 @@
+/*
+ * Tokens visuales del Sistema de Reservas FISI.
+ * Valores medidos píxel a píxel en las capturas del
+ * Informe Técnico HU-U01 / HU-U02. Toda la aplicación usa SOLO estas variables.
+ */
+:root {
+  /* Marca */
+  --azul-noche: #0e2b5c;
+  --azul-noche-oscuro: #071939;
+  --azul-noche-claro: #0d2a5a;
+  --rojo: #b91c1c;
+  --rojo-oscuro: #991b1b;
+  --rojo-hover: #a31b1b;
+
+  /* Fondos */
+  --fondo-auth: radial-gradient(ellipse at 50% 35%, #102655 0%, #0c1f47 45%, #07142b 100%);
+  --fondo-navbar: linear-gradient(90deg, var(--azul-noche-oscuro) 0%, var(--azul-noche-claro) 100%);
+  --fondo-pagina: #f8fafc;
+  --fondo-tarjeta: #ffffff;
+  --fondo-input: #f8fafc;
+  --fondo-suave: #f1f5f9;
+
+  /* Texto */
+  --texto: #0f172a;
+  --texto-titulo: var(--azul-noche);
+  --texto-secundario: #64748b;
+  --texto-placeholder: #94a3b8;
+  --texto-claro: #cbd5e1;
+  --enlace: #1d4ed8;
+
+  /* Bordes */
+  --borde: #e2e8f0;
+  --borde-input: #cbd5e1;
+  --borde-foco: #3b82f6;
+  --anillo-foco: 0 0 0 3px rgba(59, 130, 246, 0.18);
+
+  /* Estados (banners) */
+  --exito-fondo: #dcfce7;
+  --exito-borde: #bbf7d0;
+  --exito-barra: #10b981;
+  --exito-texto: #166534;
+  --aviso-fondo: #fef3c7;
+  --aviso-borde: #fde68a;
+  --aviso-barra: #f59e0b;
+  --aviso-texto: #92400e;
+  --error-fondo: #fee2e2;
+  --error-borde: #fecaca;
+  --error-barra: #b91c1c;
+  --error-texto: #991b1b;
+  --info-fondo: #eff6ff;
+  --info-borde: #bfdbfe;
+  --info-texto: #1e40af;
+
+  /* Acciones */
+  --verde: #16a34a;
+  --verde-hover: #15803d;
+
+  /* Badges de rol */
+  --badge-ambar-fondo: #fef3c7;
+  --badge-ambar-texto: #92400e;
+  --badge-morado-fondo: #f3e8ff;
+  --badge-morado-texto: #6b21a8;
+  --badge-azul-fondo: #dbeafe;
+  --badge-azul-texto: #1e40af;
+  --badge-gris-fondo: #f1f5f9;
+  --badge-gris-texto: #475569;
+
+  /* Estados de solicitud (iteración 2) */
+  --estado-pendiente: var(--aviso-barra);
+  --estado-recibida: #3b82f6;
+  --estado-aceptada: var(--verde);
+  --estado-declinada: var(--rojo);
+  --estado-cancelada: #94a3b8;
+
+  /* Forma */
+  --radio-tarjeta: 16px;
+  --radio-input: 10px;
+  --radio-boton: 10px;
+  --radio-chico: 6px;
+  --sombra-tarjeta-auth: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  --sombra-tarjeta: 0 1px 3px rgba(15, 23, 42, 0.06);
+  --sombra-hover: 0 10px 25px -8px rgba(15, 23, 42, 0.15);
+  --sombra-boton-rojo: 0 8px 18px -6px rgba(185, 28, 28, 0.55);
+
+  /* Tipografía */
+  --fuente: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --fuente-tabla: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}

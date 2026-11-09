@@ -1,0 +1,98 @@
+erDiagram
+    %% HU-U01 + HU-U02 + HU-S01 + HU-S02 + HU-S03 + HU-H01 + HU-H02 (acumulado)
+
+    USUARIOS {
+        int id PK
+        string codigo_dni UK
+        string nombre
+        string correo UK "unico sin mayusculas"
+        string password_hash
+        enum rol "alumno, docente, administrativo, foraneo, externo"
+        int intentos_fallidos "bloqueo al 3er intento"
+        boolean bloqueado
+        string otp_hash "OTP de recuperacion"
+        timestamp otp_expira
+        string documento_validacion "solo admin"
+        enum estado_validacion "pendiente, aprobado, rechazado"
+        text comentario_validacion "obligatorio si rechazado"
+        timestamp fecha_validacion
+        int validado_por FK "otro admin"
+        timestamp fecha_creacion
+        timestamp fecha_actualizacion
+    }
+
+    LUGARES {
+        int id PK
+        string nombre UK
+        text descripcion
+        string ubicacion
+        int capacidad
+        decimal precio "precio base"
+        enum estado "activo, mantenimiento, inactivo"
+        array roles_permitidos
+        timestamp fecha_creacion
+        timestamp fecha_actualizacion
+    }
+
+    OBJETOS {
+        int id PK
+        string nombre UK
+        text descripcion
+        int stock
+        decimal precio "precio base por unidad"
+        enum estado "activo, mantenimiento, inactivo"
+        array roles_permitidos
+        timestamp fecha_creacion
+        timestamp fecha_actualizacion
+    }
+
+    HORARIOS {
+        int id PK
+        int id_lugar FK "lugar u objeto, no ambos; UK con fecha y hora_inicio"
+        int id_objeto FK "lugar u objeto, no ambos; UK con fecha y hora_inicio"
+        date fecha
+        time hora_inicio "hora_fin > hora_inicio"
+        time hora_fin
+        enum estado "disponible, no_disponible, ocupado"
+        string motivo_no_disponible "obligatorio si no_disponible"
+        int creado_por FK
+        timestamp fecha_creacion
+        timestamp fecha_actualizacion
+    }
+
+    SOLICITUDES {
+        int id PK
+        int id_usuario FK
+        enum tipo "reserva, prestamo, conjunta"
+        enum prioridad "baja, normal, alta"
+        enum estado "pendiente, recibida, aceptada, declinada, cancelada"
+        text motivo
+        decimal monto_total "calculado por el backend"
+        timestamp fecha_creacion
+        timestamp fecha_actualizacion
+    }
+
+    RESERVAS {
+        int id PK
+        int id_solicitud FK "UK con id_horario"
+        int id_horario FK "UK con id_solicitud"
+        int id_lugar FK "debe coincidir con el horario"
+    }
+
+    PRESTAMOS {
+        int id PK
+        int id_solicitud FK "UK con id_horario"
+        int id_horario FK "UK con id_solicitud"
+        int id_objeto FK "debe coincidir con el horario"
+        int cantidad
+    }
+
+    USUARIOS |o--o{ USUARIOS : "valida (admin)"
+    USUARIOS ||--o{ SOLICITUDES : "crea"
+    USUARIOS ||--o{ HORARIOS : "crea (admin)"
+    LUGARES |o--o{ HORARIOS : "tiene bloques"
+    OBJETOS |o--o{ HORARIOS : "tiene bloques"
+    SOLICITUDES ||--o{ RESERVAS : "incluye 0 a N"
+    SOLICITUDES ||--o{ PRESTAMOS : "incluye 0 a N"
+    HORARIOS ||--o{ RESERVAS : "se usa en"
+    HORARIOS ||--o{ PRESTAMOS : "se usa en"
